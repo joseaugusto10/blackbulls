@@ -8,14 +8,15 @@
 <div id="bull-create-container" class="col-md-6 offset-md-3">
     <h1>Adicione um touro</h1>
     <form action="/bulls" method="POST">
+        @csrf
         <div class="form-group">
             <label for="title">Nome do touro:
-                <input type="text" class="form-control" id="title" name="title" placeholder="Nome do touro...">
+                <input type="text" class="form-control" id="name" name="name" placeholder="Nome do touro...">
             </label>
         </div>
         <div class="form-group">
             <label for="title">RGD:
-                <input type="text" class="form-control" id="title" name="title" placeholder="RGD do touro...">
+                <input type="text" class="form-control" id="rgd" name="rgd" placeholder="RGD do touro...">
             </label>
         </div>
 

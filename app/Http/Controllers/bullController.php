@@ -22,4 +22,18 @@ class bullController extends Controller
         return view('bulls.create');
     }
 
+    public function store(Request $request){
+        $bull = new bulls();
+
+        $bull->name = $request->name;
+        $bull->rgd = $request->rgd;
+        $bull->vaccine = $request->vaccine;
+        $bull->observation = $request->observation;
+
+        $bull->save();
+
+        return redirect('/');
+    }
+
+
 }

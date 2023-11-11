@@ -17,4 +17,4 @@ use App\Http\Controllers\bullController;
 
 Route::get('/',[bullController::class,'index']);
 Route::get('/bulls/create',[bullController::class,'create']);
-
+Route::post('/bulls',[bullController::class,'store']);
