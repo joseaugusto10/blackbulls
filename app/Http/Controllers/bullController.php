@@ -5,21 +5,16 @@ namespace App\Http\Controllers;
 use GuzzleHttp\Promise\Create;
 use Illuminate\Http\Request;
 
+use App\Models\bulls;
+
 class bullController extends Controller
 {
     public function index(){
 
-    $nome = "José";
-    $idade = 28;
+        /*pegando todos dados do banco*/
+        $bulls = bulls::all();
 
-    $listName = ["Fernando","Maria","Carlos","João"];
-    return view('welcome',
-        [
-            'name' => $nome,
-            'age' => $idade,
-            'profissao' => "Programador",
-            'nomes' => $listName
-        ]);
+    return view('welcome',['bulls' => $bulls]);
 
     }
 

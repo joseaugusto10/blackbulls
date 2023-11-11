@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('bulls', function (Blueprint $table) {
             $table->id();
-            $table->text(column:'name');
-            $table->text(column:'rgd');
+            $table->string('name',100);
+            $table->string('rgd',50);
+            $table->boolean('vaccine');
             $table->text(column:'observation');
         });
     }

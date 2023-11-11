@@ -8,11 +8,14 @@
 
 
         {{--Css do software--}}
-        <link rel="stylesheet" href="css/styles.css">
+        <link rel="stylesheet" href="/css/styles.css">
 
-     
         {{--Bootstrap--}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.2/css/bootstrap.min.css" integrity="sha512-b2QcS5SsA8tZodcDtGRELiGv5SaKSk1vDHDaQRda0htPYWZ6046lr3kJ5bAAQdpV2mmA/4v0wQF9MyU6/pDIAg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+     <!--Font awesome-->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="<?$BASE_URL ?>css/styles.css">
 
     </head>
     <body>
@@ -25,13 +28,15 @@
         </a>
         <div>
             <div class="navbar-nav">
-                <a class="nav-link active" id="home-link" href="#">Touros</a>
+                <a class="nav-link active" id="home-link" href="/">Touros</a>
                 <a class="nav-link active" id="home-link" href="/bulls/create">Adicionar touro</a>
             </div>
         </div>
     </nav>
 </header>
-
+    <br>
+    <h1 id="main-title">Black Bulls</h1>
+        <br>
 
         {{--Essa função vai substituir só o conteudo da página--}}
         @yield('content')
