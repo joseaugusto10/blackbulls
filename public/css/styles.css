@@ -1,0 +1,9 @@
+/* Barra de navegação*/
+.navbar-brand img{
+    width: 50px;
+    float: right; /* A imagem ficará à direita da barra de navegação */
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+    color: #bc1717; /* Altere para a cor desejada ao passar o mouse */
+}
