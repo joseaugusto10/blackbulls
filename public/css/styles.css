@@ -53,6 +53,10 @@ footer{
     margin: 0 auto;
 }
 
+#search{
+    width: 800px;
+}
+
 
 /* tabelas da página welcome*/
 #bulls-table {
@@ -100,9 +104,14 @@ footer{
     color: #BD2130;
 }
 
-#empty-list-text{
-    text-align: center;
+.container form {
+    display: inline-block;
 }
+
+
+/* #empty-list-text{
+    text-align: center;
+} */
 
 
 

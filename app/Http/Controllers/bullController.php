@@ -69,5 +69,11 @@ class bullController extends Controller
     }
 
 
+    public function destroy($id){
+        bulls::findOrFail($id)->delete();
+        return redirect('/')->with('msg','Touro excluído com sucesso!');
+    }
+
+
 
 }

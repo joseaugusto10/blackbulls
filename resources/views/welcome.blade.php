@@ -50,7 +50,11 @@
                         <td class="actions">
                         <a href="/bulls/{{ $bull->id }}"><i class="fas fa-eye check-icon"></i></a>
                         <a href="#"><i class="far fa-edit edit-icon"></i></a>
-                        <button type="submit" class="delete-btn"><i class="fas fa-times delete-icon"></i></button>
+                        <form action="/bulls/{{ $bull->id }}" method="POST">
+                            @csrf
+                            @method('delete')
+                            <button type="submit" class="delete-btn"><i class="fas fa-times delete-icon"></i></button>
+                        </form>
                         </td>
                     </tr>
                     @endforeach
