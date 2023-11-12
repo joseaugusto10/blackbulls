@@ -19,16 +19,29 @@
 
 /*Rodapé*/
 footer{
+    flex-shrink: 0;   
     text-align: center;
-    background-color: #000000;
-    color: #ffffff;
+    color:#000000;
     padding: 30px;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    
+    bottom:0;
+
+ }
+
+.msg{
+    color: #155724;
+    background-color: #D4EDDA;
+    border: 1px solid #c3e6cb;
+    padding: 10px;
+    text-align: center;
+    max-width: 500px;
+    margin: 0 auto;
+    margin-top: 30px;
 }
+
+.bold {
+    font-weight: bold;
+}
+
 
 /*---------------------------------------------------------------------------*/
 
@@ -46,6 +59,7 @@ footer{
     max-width: 800px;
     margin: 0 auto;
 }
+
 
 #bulls-table th {
     color: #ffffff;
@@ -90,22 +104,12 @@ footer{
     text-align: center;
 }
 
-#msg{
-    color: #155724;
-    background-color: #D4EDDA;
-    border: 1px solid #c3e6cb;
-    padding: 10px;
-    text-align: center;
-    max-width: 500px;
-    margin: 0 auto;
-    margin-top: 30px;
-}
 
 
 /*---------------------------------------------------------------------*/
 
 
-/*SHOW / Adicionar touros */
+/*Página create / Adicionar touros */
 #bull-create-container{
     display: flex;
     flex-direction: column;
@@ -125,6 +129,7 @@ footer{
 #bull-create-container .form-group label {
     display: block;
     text-align: left;
+    font-weight: bold;
 }
 
 #bull-create-container .form-control {
@@ -136,10 +141,26 @@ footer{
 /*SHOW / Touro individual */
 
 #view-bull-container {
-    max-width: 500px;
+    max-width: 900px;
+    max-height: 500px;
     margin: 0 auto;
-}
-.bold {
-    font-weight: bold;
+    align-items: center;
 }
 
+.bull-img{
+    width: 300px;
+    height: 300px;
+}
+
+#back-link:hover {
+    color: #bc1717; /* Texto branco */
+}
+
+.alt-search{
+    max-width: 800px;
+    margin: 0 auto;
+    align-items: center;
+}
+
+
+/*---------------------------------------------------------------------*/

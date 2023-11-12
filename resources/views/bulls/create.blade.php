@@ -7,8 +7,8 @@
 
 <div id="bull-create-container" class="col-md-6 offset-md-3">
     <h1>Adicione um touro</h1>
-    <form action="/bulls" method="POST">
-        @csrf
+    <form action="/bulls" method="POST" enctype="multipart/form-data">
+        @csrf {{--Diretiva para poder enviar o formulário--}}
         <div class="form-group">
             <label for="title">Nome do touro:
                 <input type="text" class="form-control" id="name" name="name" placeholder="Nome do touro...">
@@ -34,6 +34,13 @@
                 <textarea name="observation" id="observation"  class="form-control" placeholder="Adicione alguma observação..."></textarea>
             </label>
         </div>
+        
+        <div class="form-group">
+            <label for="image">Adicionar imagem:
+                <input type="file" id="image" name="image" class="from-control-file">
+            </label>
+        </div>
+
         <input type="submit" class="btn btn-dark " value="Adicionar touro">
     </form>
 

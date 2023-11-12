@@ -39,9 +39,23 @@
         <br>
 
         {{--Essa função vai substituir só o conteudo da página--}}
-        @yield('content')
-        <footer>
+        <main>
+            <div class="container-fluid">
+                <div class="row">
+                    @if(session('msg'))
+                        <p class="msg">{{ session('msg')}}</p>
+                        <br>
+                    @endif    
+                    @yield('content')
+                </div>
+            </div>
+        </main>
+
+        <br><br><br><br>
+        <footer class="footer">
             <p>BlackBulls &copy;2023</p>
         </footer>
+
+
     </body>
 </html>
