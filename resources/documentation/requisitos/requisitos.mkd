@@ -1,0 +1,17 @@
+Levantamento de Requisitos Projeto BlackBulls
+
+Problema?
+A fazenda "Boi Feliz" precisa de um sistema eficiente para cadastrar e consultar informações sobre seus touros. Atualmente, eles realizam essas tarefas de maneira manual, o que consome muito tempo e pode levar a erros no registro e na recuperação de dados. 
+
+Solução?
+Desenvolver um software de cadastro e consulta de touros que seja intuitivo, seguro e eficiente. O sistema deve oferecer as seguintes funcionalidades:
+
+•	Cadastro de Touros
+•	Consulta Rápida e Eficiente
+•	Possibilidade de remover e atualizar os dados.
+
+Possíveis Ganhos
+a fazenda "Boi Feliz" poderá otimizar suas operações, reduzir erros de registro, facilitar o acesso às informações e melhorar a gestão de sua criação de touros. Isso resultará em maior eficiência, controle e, consequentemente, em benefícios para o negócio como um todo.
+
+
+Ferramentas escolhidas: PHP Lavarel, HTML,CSS, SQL Server.
