@@ -31,6 +31,7 @@
             <img src="/img/header/logo.png" alt="img-header" class="img-header">
             <a class="nav-link active" id="home-link" href="/">Touros</a>
             <a class="nav-link active" id="home-link" href="/bulls/create">Adicionar touro</a>
+            <a class="nav-link active" id="home-link" href="/bulls/dashboard">Dashboard</a>
         </div>
     </div>
 </nav>

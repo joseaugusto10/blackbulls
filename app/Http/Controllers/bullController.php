@@ -26,6 +26,8 @@ class bullController extends Controller
         $bulls = bulls::all();
         }
         
+        $quantityVaccine = bulls::where('vaccine', 1)->count();
+        $quantityBulls = bulls::whereNotNull('id')->count();
 
     return view('welcome',['bulls' => $bulls,'search' => $search]);
 
@@ -118,4 +120,14 @@ class bullController extends Controller
     
         return redirect('/')->with('msg', 'Touro alterado com sucesso!');
     }
+
+    public function dashboard()
+    {
+        $quantityVaccine = bulls::where('vaccine', 1)->count();
+        $quantityBulls = bulls::whereNotNull('id')->count();
+        $quantityImage = bulls::whereNotNull('image')->count();
+        return view('bulls/dashboard', ['qtyVaccine' => $quantityVaccine, 'qtyBulls' => $quantityBulls,'qtyImage' => $quantityImage]);
+    }
+
+
 }

@@ -6,7 +6,6 @@
 
 
 <div class="container">
-
         <div id="search-container" class="col-md-12 source-bulss">
             <h5>Busque um touro</h5>
             <form action="/" method="GET">
@@ -14,7 +13,6 @@
             </form>
             <br>
         </div>
-
         @if($search)
         <h6 class="alt-search">Pesquisando por: {{ $search }}, <a href="/">ver todos!</a></h6>
         <br>
