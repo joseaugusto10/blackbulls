@@ -1,0 +1,91 @@
+# Documentação do Código Blade Laravel
+
+Este é um código Blade Laravel usado para renderizar uma página da web. Ele exibe uma lista de touros e permite que os usuários pesquisem e realizem ações como visualizar, editar e excluir touros.
+
+## Estrutura do Documento
+
+O documento Blade é dividido em várias seções usando as diretivas `@section` do Laravel, onde cada seção é renderizada em um layout específico.
+
+### Seção 'title'
+
+```php
+@section('title','home')
+
+
+Esta seção contém o conteúdo principal da página, que está vindo do Blade principal que é o Main.
+Seção 'content'
+
+------------------------------------------------------------------------------------------------------------------------------
+##Conteúdo da Página
+O conteúdo da página é dividido em várias seções e elementos HTML.
+
+------------------------------------------------------------------------------------------------------------------------------
+##Barra de Pesquisa
+Nesta seção, é exibida uma barra de pesquisa que permite aos usuários procurar touros. A pesquisa é realizada através de um formulário GET.
+<div id="search-container" class="col-md-12 source-bulss">
+    <h5>Busque um touro</h5>
+    <form action="/" method="GET">
+        <input type="text" id="search" name="search" class="form-control" placeholder="Procurar...">
+    </form>
+    <br>
+</div>
+
+------------------------------------------------------------------------------------------------------------------------------
+##Exibição de Resultados de Pesquisa
+Esta parte exibe informações sobre a pesquisa, se uma pesquisa estiver em andamento.
+@if($search)
+<h6 class="alt-search">Pesquisando por: {{ $search }}, <a href="/">ver todos!</a></h6>
+<br>
+@endif
+
+Essa seção lida com diferentes cenários, incluindo a exibição de uma mensagem de "Nenhum touro encontrado" quando a pesquisa não retorna resultados e uma mensagem para "Nenhum touro cadastrado" quando não há touros no banco de dados.
+@if(count($bulls) == 0 && $search)
+    <p class="alt-search">Não foi possível encontrar nenhum touro com {{ $search }}!</p>
+@elseif(count($bulls) == 0)
+    <p class="alt-search">Não existe touros cadastrados, <a href="bulls/create">deseja cadastrar?</a></p>
+@else
+
+------------------------------------------------------------------------------------------------------------------------------
+##Tabela de Touros
+
+Nesta seção, uma tabela é exibida com detalhes dos touros, incluindo ID, nome, RGD e status de vacinação. Ícones de ação permitem que os usuários visualizem, editem e removam touros.
+
+<table class="table" id="bulls-table">
+    <!-- Cabeçalho da tabela -->
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nome</th>
+            <th scope="col">RGD</th>
+            <th scope="col">Vacinado</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <!-- Corpo da tabela -->
+    <tbody>
+        @foreach($bulls as $bull)
+            <tr>
+                <td scope="row" class="col-id">{{ $bull->id }}</td>
+                <td scope="row">{{ $bull->name }}</td>
+                <td scope="row">{{ $bull->rgd }}</td>
+                @if($bull->vaccine == 1)
+                    <td scope="row">Sim</td>
+                @else
+                    <td scope="row">Não</td>
+                @endif
+                <td class="actions">
+                    <!-- Ícones de ação -->
+                    <a href="/bulls/{{ $bull->id }}"><i class="fas fa-eye check-icon"></i></a>
+                    <a href="/bulls/edit/{{ $bull->id }}"><i class="far fa-edit edit-icon"></i></a>
+                    <form action="/bulls/{{ $bull->id }}" method="POST">
+                        @csrf
+                        @method('delete')
+                        <button type="submit" class="delete-btn" onclick="return confirm('Deseja remover?')">
+                            <i class="fas fa-times delete-icon"></i>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        @endforeach
+    </tbody>
+</table>

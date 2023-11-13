@@ -1,9 +1,18 @@
 
 /*estilo todas views fixados*/
 /* Barra de navegação*/
-.navbar-brand img{
-    width: 50px;
-    float: right; /* A imagem ficará à direita da barra de navegação */
+.navbar-nav {
+    display: flex;
+    align-items: center;
+}
+
+.img-header{
+    width: 110px;
+    max-height: 110px;    
+}
+
+#home-link{
+    font-size: 20px;
 }
 
 .navbar-dark .navbar-nav .nav-link:hover {
@@ -145,6 +154,10 @@ footer{
     width: 500px;
 }
 
+.back-pos{
+    text-align: left;
+    width: 600px;
+}
 /*---------------------------------------------------------------------*/
 
 /*SHOW / Touro individual */
@@ -171,5 +184,40 @@ footer{
     align-items: center;
 }
 
+
+/*---------------------------------------------------------------------*/
+
+/*Página Update / Editar touros */
+#bull-edit-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 50vh;
+}
+
+#bull-edit-container h1 {
+    margin-bottom: 20px;
+}
+
+#bull-edit-container .form-group {
+    margin-bottom: 15px;
+}
+
+#bull-edit-container .form-group label {
+    display: block;
+    text-align: left;
+    font-weight: bold;
+}
+
+#bull-edit-container .form-control {
+    width: 500px;
+}
+
+.img-preview{
+    width: 300px;
+    height: 300px;
+    border: 1px solid #000;
+}
 
 /*---------------------------------------------------------------------*/

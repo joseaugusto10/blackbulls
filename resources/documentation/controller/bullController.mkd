@@ -1,0 +1,144 @@
+Documentação do Controlador Laravel (bullController)
+Este é um controlador Laravel chamado bullController que lida com as operações relacionadas a touros, incluindo visualização, criação, atualização e exclusão de registros. Abaixo está a documentação para cada um dos métodos do controlador.
+
+
+Método index
+Este método lida com a exibição da página inicial que lista todos os touros. Ele também permite pesquisar touros com base no termo de pesquisa fornecido.
+
+public function index(){
+    // Recebe um termo de pesquisa da URL
+    $search = request('search');
+
+    if ($search) {
+        // Realiza uma pesquisa no banco de dados com base no nome
+        $bulls = bulls::where([
+            ['name', 'like', '%' . $search . '%']
+        ])->get();
+    } else {
+        // Pega todos os registros de touros no banco de dados
+        $bulls = bulls::all();
+    }
+
+    // Retorna a view "welcome" com os resultados da pesquisa e o termo de pesquisa
+    return view('welcome', ['bulls' => $bulls, 'search' => $search]);
+}
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+Método create
+Este método lida com a exibição do formulário de criação de touro.
+
+public function create(){
+    // Retorna a view "bulls.create" para exibir o formulário de criação de touro
+    return view('bulls.create');
+}
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+Método store
+Esta parte do código store em um controlador Laravel é responsável por criar um novo registro na tabela de bulls no banco de dados. Ele coleta os dados do formulário, formata as datas e horas no formato correto para o SQL Server e adiciona uma imagem (se fornecida) ao diretório public/img/bulls. Em seguida, ele salva o novo registro no banco de dados e redireciona o usuário de volta à página inicial com uma mensagem de sucesso.
+
+Este código é uma operação típica de criação (ou inserção) de registros no Laravel e é usado quando você deseja adicionar um novo "touro" ao banco de dados. Certifique-se de que os campos do formulário estejam corretamente nomeados e correspondam aos atributos do modelo bulls. Além disso, verifique se o formato da data/hora é compatível com o SQL Server.
+
+//função para salvar no banco
+public function store(Request $request){
+    // Cria uma nova instância do modelo "bulls"
+    $bull = new bulls();
+
+    // Preenche os atributos do modelo com os valores do formulário
+    $bull->name = $request->name;
+    $bull->rgd = $request->rgd;
+    $bull->vaccine = $request->vaccine;
+    $bull->observation = $request->observation;
+
+    // Obtém a data e hora atual
+    $currentTime = now();
+
+    // Formata a data e hora atual no formato aceitável para o SQL Server
+    $created_at = $currentTime->format('Y-d-m H:i:s');
+    $updated_at = $currentTime->format('Y-d-m H:i:s');
+
+    // Define as colunas created_at e updated_at com os valores formatados
+    $bull->created_at = $created_at;
+    $bull->updated_at = $updated_at;
+
+    // Adiciona a imagem, se fornecida no formulário
+    if ($request->hasFile('image') && $request->file('image')->isValid()) {
+        $requestImage = $request->image;
+        $extension = $requestImage->extension();
+        $imageName = md5($requestImage->getClientOriginalName() . strtotime("now") . "." . $extension);
+
+        $requestImage->move(public_path('img/bulls'), $imageName);
+        $bull->image = $imageName;
+    }
+
+    // Salva o modelo no banco de dados
+    $bull->save();
+
+    // Redireciona de volta à página inicial com uma mensagem de sucesso
+    return redirect('/')->with('msg', 'Touro adicionado com sucesso!');
+}
+
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+Método show
+Este método lida com a exibição dos detalhes de um touro específico com base no seu ID.
+public function show($id){
+    // Busca um touro pelo seu ID
+    $bulls = bulls::findOrFail($id);
+    // Retorna a view "bulls.show" para exibir os detalhes do touro
+    return view('bulls.show',['bull'=>$bulls]);
+}
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+Método destroy
+Este método lida com a exclusão de um registro de touro com base no seu ID.
+
+public function destroy($id){
+    // Busca um touro pelo seu ID e o exclui do banco de dados
+    bulls::findOrFail($id)->delete();
+    // Redireciona de volta à página inicial com uma mensagem de sucesso
+    return redirect('/')->with('msg','Touro excluído com sucesso!');
+}
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+Método edit
+Este método lida com a exibição do formulário de edição de um touro específico com base no seu ID.
+
+public function edit($id){
+    // Busca um touro pelo seu ID
+    $bull = bulls::findOrFail($id);
+    // Retorna a view "bulls.edit" para exibir o formulário de edição do touro
+    return view('bulls.edit',['bull'=>$bull]);
+}
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+Método update
+Este método lida com o processo de edição e atualização de um registro de touro no banco de dados.
+
+public function update(Request $request, $id){
+    // Busca um touro pelo seu ID
+    $bull = Bulls::find($id);
+
+    if (!$bull) {
+        // Verifica se o touro não foi encontrado
+        return redirect('/')->with('error', 'Touro não encontrado.');
+    }
+
+    // Atualiza os campos do touro com os dados do formulário, semelhante ao método "store"
+    
+    // Adiciona ou atualiza a imagem do touro, tratando exceções
+    
+    // Salva as alterações no banco de dados
+    $bull->save();
+
+    // Redireciona de volta à página inicial com uma mensagem de sucesso
+    return redirect('/')->with('msg', 'Touro alterado com sucesso!');
+}
+
+
+Esta documentação descreve as principais funcionalidades do controlador bullController e como ele lida com ações relacionadas a touros no aplicativo.

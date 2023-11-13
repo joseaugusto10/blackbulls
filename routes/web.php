@@ -20,4 +20,6 @@ Route::get('/',[bullController::class,'index']); //Rota mostrar todos registro
 Route::get('/bulls/create',[bullController::class,'create']);//Rota para os formulários de cadastro
 Route::post('/bulls',[bullController::class,'store']); //Rota para enviar dados ao banco
 Route::get('/bulls/{id}',[bullController::class,'show']); //Rota para pegar o id do front
-Route::delete('/bulls/{id}',[bullController::class, 'destroy']);
+Route::delete('/bulls/{id}',[bullController::class, 'destroy']);//Rota para pegar o id do front e remover do banco
+Route::get('/bulls/edit/{id}',[bullController::class,'edit']);//Rota para pegar o id do front e editar do banco
+Route::put('/bulls/update/{id}', 'App\Http\Controllers\bullController@update');//Rota para atualizar os dados no banco

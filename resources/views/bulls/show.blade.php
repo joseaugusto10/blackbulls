@@ -8,9 +8,11 @@
 <div class="container" id="view-bull-container">
 <br><br>
 <h3 id="main-title">{{ $bull->name }}</h3>
-<a class="nav-link active " id="back-link" href="/">
-    <i class="fas fa-arrow-left"></i>Voltar
-</a>
+<div class="row">
+    <a class="nav-link active " id="back-link" href="/">
+        <i class="fas fa-arrow-left"></i>Voltar
+    </a>
+</div>    
 <br>
     <div class="row">
         <div class="col-md-4">

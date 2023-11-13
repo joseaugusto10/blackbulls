@@ -49,17 +49,21 @@
                         {{--<td scope="row">{{$bull ->observation}}</td>--}}
                         <td class="actions">
                         <a href="/bulls/{{ $bull->id }}"><i class="fas fa-eye check-icon"></i></a>
-                        <a href="#"><i class="far fa-edit edit-icon"></i></a>
+                        <a href="/bulls/edit/{{ $bull->id }}"><i class="far fa-edit edit-icon"></i></a>
                         <form action="/bulls/{{ $bull->id }}" method="POST">
                             @csrf
                             @method('delete')
-                            <button type="submit" class="delete-btn"><i class="fas fa-times delete-icon"></i></button>
+                            <button type="submit" class="delete-btn" onclick="return confirm('Deseja remover?')">
+                            <i class="fas fa-times delete-icon"></i>
+                            </button>
                         </form>
                         </td>
                     </tr>
                     @endforeach
             </tbody>
         </table>
+
+
         @endif
 
 

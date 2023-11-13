@@ -6,17 +6,23 @@
 
 
 <div id="bull-create-container" class="col-md-6 offset-md-3">
-    <h1>Adicione um touro</h1>
+    <div class="row back-pos">
+    <a class="nav-link active" id="back-link" href="/">
+        <i class="fas fa-arrow-left"></i>Voltar
+    </a>
+    <br>
+    </div>  
+    <h1>Adicione um touro</h1> 
     <form action="/bulls" method="POST" enctype="multipart/form-data">
         @csrf {{--Diretiva para poder enviar o formulário--}}
         <div class="form-group">
             <label for="title">Nome do touro:
-                <input type="text" class="form-control" id="name" name="name" placeholder="Nome do touro...">
+                <input type="text" class="form-control" id="name" name="name" placeholder="Nome do touro..." required>
             </label>
         </div>
         <div class="form-group">
             <label for="title">RGD:
-                <input type="text" class="form-control" id="rgd" name="rgd" placeholder="RGD do touro...">
+                <input type="text" class="form-control" id="rgd" name="rgd" placeholder="RGD do touro..." required>
             </label>
         </div>
 

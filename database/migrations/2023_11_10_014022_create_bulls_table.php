@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name',100);
             $table->string('rgd',50);
             $table->boolean('vaccine');
-            $table->text(column:'observation');
+            $table->text(column:'observation')->nullable();;
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();
 
