@@ -60,12 +60,12 @@
                     @endforeach
             </tbody>
         </table>
-
-
+        <br>
         @endif
-
+        <div class="page-table">
+            {{ $bulls->links('custom.pagination') }}
+        </div> 
 
 </div>
-
-
+     
 @endsection

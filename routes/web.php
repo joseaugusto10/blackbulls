@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\bullController;
 use App\Models\bulls;
 
+
 Route::get('/bulls/dashboard',[bullController::class,'dashboard']);//Rota para dashboard
 Route::get('/',[bullController::class,'index']); //Rota mostrar todos registro
 Route::get('/bulls/create',[bullController::class,'create']);//Rota para os formulários de cadastro

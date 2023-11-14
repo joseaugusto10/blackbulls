@@ -118,9 +118,14 @@ footer{
 }
 
 
-/* #empty-list-text{
+.page-table{
+    max-width: 800px;
+    margin: 0 auto;
     text-align: center;
-} */
+    width: 100px;
+    display: flex;
+    height: 100vh;
+}
 
 
 
@@ -221,3 +226,20 @@ footer{
 }
 
 /*---------------------------------------------------------------------*/
+
+/* Página Dashboards */
+/* Efeitos fundo---*/
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.animated-fadeIn {
+    animation: fadeIn 1s ease-in-out;
+}
+
+
