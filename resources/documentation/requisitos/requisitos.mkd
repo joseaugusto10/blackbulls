@@ -1,17 +1,57 @@
-Levantamento de Requisitos Projeto BlackBulls
+ Este documento destina-se a fornecer uma visão abrangente dos requisitos identificados para o sistema "Black Bulls", que gerencia informações sobre touros.
 
-Problema?
-A fazenda "Boi Feliz" precisa de um sistema eficiente para cadastrar e consultar informações sobre seus touros. Atualmente, eles realizam essas tarefas de maneira manual, o que consome muito tempo e pode levar a erros no registro e na recuperação de dados. 
-
-Solução?
-Desenvolver um software de cadastro e consulta de touros que seja intuitivo, seguro e eficiente. O sistema deve oferecer as seguintes funcionalidades:
-
-•	Cadastro de Touros
-•	Consulta Rápida e Eficiente
-•	Possibilidade de remover e atualizar os dados.
-
-Possíveis Ganhos
-a fazenda "Boi Feliz" poderá otimizar suas operações, reduzir erros de registro, facilitar o acesso às informações e melhorar a gestão de sua criação de touros. Isso resultará em maior eficiência, controle e, consequentemente, em benefícios para o negócio como um todo.
-
-
-Ferramentas escolhidas: PHP Lavarel, HTML,CSS, SQL Server.
+1. Requisitos Funcionais
+1.1 Exibir Lista de Touros
+Descrição: O sistema deve permitir a visualização da lista de touros cadastrados.
+Critérios de Aceitação:
+A lista deve incluir informações como nome, RGD, status de vacinação e ações disponíveis (visualizar, editar, excluir).
+1.2 Buscar Touros
+Descrição: O sistema deve oferecer a funcionalidade de busca para encontrar touros específicos.
+Critérios de Aceitação:
+Os resultados devem ser filtrados com base no nome do touro.
+A busca deve ser sensível a maiúsculas e minúsculas.
+1.3 Cadastrar Touro
+Descrição: O sistema deve permitir o cadastro de novos touros.
+Critérios de Aceitação:
+O usuário deve fornecer informações como nome, RGD, status de vacinação, observações e imagem opcionalmente.
+A imagem deve ser válida e armazenada no sistema.
+1.4 Visualizar Detalhes do Touro
+Descrição: O sistema deve permitir a visualização detalhada das informações de um touro específico.
+Critérios de Aceitação:
+O usuário deve ser capaz de visualizar todas as informações do touro.
+1.5 Editar Touro
+Descrição: O sistema deve permitir a edição das informações de um touro existente.
+Critérios de Aceitação:
+O usuário pode modificar todas as informações do touro, incluindo a imagem.
+1.6 Remover Touro
+Descrição: O sistema deve permitir a exclusão de um touro existente.
+Critérios de Aceitação:
+O usuário deve confirmar a exclusão, e o touro deve ser removido permanentemente do sistema.
+1.7 Dashboard com Estatísticas
+Descrição: O sistema deve apresentar um dashboard com estatísticas sobre os touros cadastrados.
+Critérios de Aceitação:
+As estatísticas devem incluir a quantidade total de touros, a quantidade de touros vacinados e a quantidade de touros com imagens.
+2. Requisitos Não Funcionais
+2.1 Desempenho
+Descrição: O sistema deve oferecer um desempenho satisfatório, garantindo tempos de resposta rápidos.
+Critérios de Aceitação:
+A página de listagem de touros deve carregar em menos de X segundos.
+2.2 Usabilidade
+Descrição: A interface do usuário deve ser intuitiva e fácil de usar.
+Critérios de Aceitação:
+Os formulários e páginas devem ser claros e de fácil navegação.
+2.3 Segurança
+Descrição: O sistema deve garantir a segurança dos dados dos touros e usuários.
+Critérios de Aceitação:
+O acesso não autorizado às informações dos touros deve ser impedido.
+As senhas dos usuários devem ser armazenadas de forma segura.
+3. Requisitos de Interface
+Navegadores Suportados: O sistema deve ser compatível com os navegadores mais recentes, incluindo Chrome, Firefox, Safari e Edge.
+Dispositivos Suportados: O sistema deve ser responsivo e funcionar em dispositivos desktop e móveis.
+4. Requisitos de Desempenho
+Armazenamento: O sistema deve suportar um grande número de touros, com capacidade de escalabilidade.
+5. Restrições e Limitações
+O sistema será desenvolvido utilizando o framework Laravel.
+A hospedagem do sistema será feita em um ambiente compatível com Laravel.
+Conclusão
+Este levantamento de requisitos fornece uma base sólida para o desenvolvimento do sistema "Black Bulls". Os requisitos identificados abrangem tanto as funcionalidades específicas quanto as características mais amplas de desempenho, usabilidade e segurança. A conformidade com esses requisitos garantirá a entrega de um sistema eficiente e eficaz para gerenciar touros.

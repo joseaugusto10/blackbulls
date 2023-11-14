@@ -1,0 +1,53 @@
+Introdução
+Este documento oferece uma análise detalhada do código Blade utilizado para construir a página de dashboard na aplicação "Black Bulls". O dashboard exibe estatísticas sobre a quantidade de touros registrados, a quantidade de touros vacinados e a quantidade de touros com fotos.
+
+Estrutura do Arquivo
+O código está contido dentro de uma seção Blade @section('content'), que estende o layout principal layouts.main. A estrutura da página é organizada, apresentando um título, seguido por cartões que exibem estatísticas sobre os touros cadastrados.
+
+Dashboard
+
+Título do Dashboard:
+<h1 class="text-center animated-fadeIn">Dashboard</h1>
+Exibe um título centralizado na página.
+
+Cartões de Estatísticas:
+
+<div class="row">
+    <!-- Cartão 1: Quantidade de Touros Registrados -->
+    <div class="col-md-4 animated-fadeIn">
+        <div class="card text-center">
+            <div class="card-body">
+                <h5 class="card-title">Quantidade de Touros Registrados</h5>
+                <p class="card-text">{{ $qtyBulls }}</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cartão 2: Quantidade de Touros Vacinados -->
+    <div class="col-md-4 animated-fadeIn">
+        <div class="card text-center">
+            <div class="card-body">
+                <h5 class="card-title">Quantidade de Touros Vacinados</h5>
+                <p class="card-text">{{ $qtyVaccine }}</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cartão 3: Quantidade de Touros com Fotos -->
+    <div class="col-md-4 animated-fadeIn">
+        <div class="card text-center">
+            <div class="card-body">
+                <h5 class="card-title">Quantidade de Touros com Fotos</h5>
+                <p class="card-text">{{ $qtyImage }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+Utiliza um sistema de grid para exibir três cartões, cada um representando uma estatística sobre os touros cadastrados.
+
+Considerações Finais
+Este código Blade fornece uma visão rápida e visualmente atraente das estatísticas relacionadas aos touros registrados no sistema. A estrutura modular dos cartões facilita a expansão do dashboard com novas métricas no futuro. A manutenção contínua pode incluir a adição de mais estatísticas, ajustes visuais e a implementação de melhorias de desempenho conforme necessário.
+
+
+
+

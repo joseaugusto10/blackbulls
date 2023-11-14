@@ -1,65 +1,47 @@
-Rota 1: Mostrar Todos os Registros
+Introdução
+Este documento fornece uma visão geral das rotas definidas no Laravel para o controle de touros (bullController). As rotas controlam o acesso às diversas funcionalidades do sistema, como a exibição do dashboard, a criação, visualização, edição, exclusão e atualização de registros de touros.
 
-URL: /
-Método HTTP: GET
-Controlador e Método: bullController::index
-Descrição: Esta rota é responsável por exibir todos os registros de touros armazenados no banco de dados. Ela direciona o usuário para a página onde os registros são listados.
-----------------------------------------------------------------------------------------------------------------------------
+Rotas Definidas
 
-Rota 2: Formulário de Cadastro de Touros
+Dashboard:
+Route::get('/bulls/dashboard', [bullController::class, 'dashboard']);
+Descrição: Rota para exibir o dashboard com estatísticas sobre os touros registrados.
+Método Controlador: bullController@dashboard.
 
-URL: /bulls/create
-Método HTTP: GET
-Controlador e Método: bullController::create
-Descrição: Esta rota direciona o usuário para um formulário de cadastro de touros, onde eles podem inserir informações sobre um novo touro.
+Mostrar Todos os Registros:
+Route::get('/', [bullController::class, 'index']);
+Descrição: Rota para exibir todos os registros de touros.
+Método Controlador: bullController@index.
 
-----------------------------------------------------------------------------------------------------------------------------
+Formulário de Cadastro:
+Route::get('/bulls/create', [bullController::class, 'create']);
+Descrição: Rota para exibir o formulário de cadastro de touros.
+Método Controlador: bullController@create.
 
-Rota 3: Enviar Dados ao Banco de Dados
+Enviar Dados ao Banco:
+Route::post('/bulls', [bullController::class, 'store']);
+Descrição: Rota para processar o envio de dados do formulário e armazenar no banco.
+Método Controlador: bullController@store.
 
-URL: /bulls
-Método HTTP: POST
-Controlador e Método: bullController::store
-Descrição: Quando um usuário envia o formulário de cadastro, esta rota é responsável por processar os dados e armazenar um novo registro de touro no banco de dados.
+Visualizar Touro por ID:
+Route::get('/bulls/{id}', [bullController::class, 'show']);
+Descrição: Rota para exibir os detalhes de um touro específico com base no ID.
+Método Controlador: bullController@show.
 
-----------------------------------------------------------------------------------------------------------------------------
+Remover Touro por ID:
+Route::delete('/bulls/{id}', [bullController::class, 'destroy']);
+Descrição: Rota para remover um touro específico com base no ID.
+Método Controlador: bullController@destroy.
 
-Rota 4: Visualizar Detalhes de um Touro
+Editar Touro por ID:
+Route::get('/bulls/edit/{id}', [bullController::class, 'edit']);
+Descrição: Rota para exibir o formulário de edição de um touro específico com base no ID.
+Método Controlador: bullController@edit.
 
-URL: /bulls/{id}
-Método HTTP: GET
-Controlador e Método: bullController::show
-Descrição: Esta rota permite que o usuário visualize detalhes específicos de um touro com base no ID fornecido na URL. Ela direciona o usuário para a página de visualização de detalhes.
+Atualizar Dados no Banco:
+Route::put('/bulls/update/{id}', 'App\Http\Controllers\bullController@update');
+Descrição: Rota para processar a atualização de dados do formulário e armazenar no banco.
+Método Controlador: bullController@update.
 
-----------------------------------------------------------------------------------------------------------------------------
-
-Rota 5: Remover Touro do Banco de Dados
-
-URL: /bulls/{id}
-Método HTTP: DELETE
-Controlador e Método: bullController::destroy
-Descrição: Esta rota é usada para remover um touro do banco de dados com base no ID fornecido na URL. É comumente usada para excluir registros.
-
-----------------------------------------------------------------------------------------------------------------------------
-
-Rota 6: Editar Touro no Banco de Dados
-
-URL: /bulls/edit/{id}
-Método HTTP: GET
-Controlador e Método: bullController::edit
-Descrição: Esta rota direciona o usuário para um formulário de edição de touro, onde eles podem modificar as informações de um touro com base no ID fornecido na URL.
-
-----------------------------------------------------------------------------------------------------------------------------
-
-Rota 7: Atualizar Dados no Banco de Dados
-
-URL: /bulls/update/{id}
-Método HTTP: PUT
-Controlador e Método: bullController::update
-Descrição: Quando um usuário envia o formulário de edição, esta rota é responsável por processar os dados e atualizar as informações do touro no banco de dados com base no ID fornecido na URL.
-Esta documentação fornece uma visão geral das rotas e de seus propósitos em seu aplicativo Laravel. Certifique-se de ajustar a documentação de acordo com a estrutura específica do seu projeto e adicionar mais detalhes, se necessário, para ajudar os desenvolvedores e usuários a entenderem como o aplicativo funciona.
-
-
-
-
-
+Considerações Finais
+Estas rotas definidas no Laravel mapeiam as diferentes funcionalidades relacionadas ao controle de touros no sistema. A manutenção contínua pode envolver a adição de mais rotas, ajustes nas rotas existentes, e a implementação de autenticação e autorização conforme necessário para aprimorar a segurança do sistema.

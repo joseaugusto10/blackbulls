@@ -13,25 +13,7 @@ use function Laravel\Prompts\search;
 
 class bullController extends Controller
 {
-    // public function index(){
-
-    //     $search = request('search');
-
-    //     if ($search) {
-    //         $bulls = bulls::where([
-    //             ['name','like','%' . $search . '%']
-    //         ])->get();
-    //     }
-    //     else{
-    //     //pegando todos dados do banco
-    //     $bulls = bulls::all();
-    //     }
-        
-
-    // return view('welcome',['bulls' => $bulls,'search' => $search]);
-
-    // }
-
+ 
     public function index()
     {
         $search = request('search');
@@ -48,7 +30,6 @@ class bullController extends Controller
 
 
     
-
 
     public function create(){
         return view('bulls.create');
@@ -145,7 +126,5 @@ class bullController extends Controller
         $quantityImage = bulls::whereNotNull('image')->count();
         return view('bulls/dashboard', ['qtyVaccine' => $quantityVaccine, 'qtyBulls' => $quantityBulls,'qtyImage' => $quantityImage]);
     }
-
-
 
 }

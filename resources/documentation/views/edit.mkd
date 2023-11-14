@@ -1,81 +1,53 @@
-##Esta seção define o título da página, que geralmente inclui "Editando" seguido pelo nome do touro em edição.
-# Documentação da Página de Edição de Touro
+Introdução
+Este documento fornece uma análise detalhada do código Blade utilizado para criar a página de edição de touros na aplicação "Black Bulls". Essa página permite que os usuários modifiquem informações específicas de um touro, como nome, RGD, status de vacinação, observações e imagem.
 
-Este código Blade Laravel representa a página de edição de um touro. Ele permite aos usuários editar informações do touro, incluindo nome, RGD, status de vacinação, observações e imagem.
+Estrutura do Arquivo
+O código está contido dentro de uma seção Blade @section('content'), que estende o layout principal layouts.main. A estrutura da página é organizada, apresentando um link de retorno, o título da página, e um formulário para editar os detalhes do touro.
 
-## Estrutura da Página
+Edição do Touro
 
-A página é dividida em várias seções e elementos HTML.
-
-### Título da Página
-
-```php
-@section('title','Editando: ' . $bull->name)
-------------------------------------------------------------------------------------------------------------------------------
-##Conteúdo da Página
-Esta seção contém o conteúdo principal da página.
-@section('content')
-
-------------------------------------------------------------------------------------------------------------------------------
-##Estrutura do Conteúdo
-Esta seção representa a estrutura do conteúdo da página de edição de touro. Aqui estão os principais elementos:
-
-Um título principal com o nome do touro em edição.
-Um botão de "Voltar" que permite ao usuário retornar à página anterior.
-Um formulário de edição que permite ao usuário atualizar as informações do touro.
-Os campos do formulário, incluindo nome, RGD, status de vacinação, observações e imagem.
-Uma visualização da imagem atual do touro.
-
-<div id="bull-edit-container" class="col-md-6 offset-md-3">
-    <div class="row back-pos">
-        <a class="nav-link active" id="back-link" href="/">
-            <i class="fas fa-arrow-left"></i>Voltar
-        </a>
-        <br>
-    </div>
-
-    <h1>Editando o touro: {{$bull->name}}</h1>
-    <form action="/bulls/update/{{ $bull->id }}" method="POST" enctype="multipart/form-data">
-        @csrf {{--Diretiva para poder enviar o formulário--}}
-        @method('PUT')
-        <!-- Formulário de edição do touro -->
-        <div class="form-group">
-            <label for="title">Nome do touro:
-                <input type="text" class="form-control" id="name" name="name" placeholder="Nome do touro..." value="{{ $bull->name }}">
-            </label>
-        </div>
-        <div class="form-group">
-            <label for "title">RGD:
-                <input type="text" class="form-control" id="rgd" name="rgd" placeholder="RGD do touro..." value="{{ $bull->rgd }}">
-            </label>
-        </div>
-        <div class="form-group">
-            <label for "title">Vacinado:
-                <select name="vaccine" id="vaccine" class="form-control">
-                    <option value="0">Não</option>
-                    <option value="1" {{ $bull->vaccine ==1 ? "selected='selected'": ""}}>Sim</option>
-                </select>
-            </label>
-        </div>
-        <div class="form-group">
-            <label for "title">Observações:
-                <textarea name="observation" id="observation"  class="form-control" placeholder="Adicione alguma observação...">{{ $bull->observation }}</textarea>
-            </label>
-        </div>
-        <div class="row">
-            <div class="form-group">
-                <label for "image">Adicionar imagem:
-                    <input type="file" id="image" name="image" class="from-control-file col-md-8">
-                    <br class="col-md-6"><br class="col-md-6">
-                    <img src="/img/bulls/{{ $bull->image }}" alt="{{ $bull->name }}" class="img-preview col-md-12">
-                </label>
-            </div>
-        </div>
-        <input type="submit" class="btn btn-dark " value="Alterar touro">
-    </form>
+Link de Retorno:
+<div class="row back-pos">
+    <a class="nav-link active" id="back-link" href="/">
+        <i class="fas fa-arrow-left"></i>Voltar
+    </a>
+    <br>
 </div>
-------------------------------------------------------------------------------------------------------------------------------
-##Uso
-Este código Blade é usado para permitir a edição das informações de um touro específico. Ele é acessado a partir de uma rota e recebe os dados do touro em edição.
+Fornecido como um link para retornar à página anterior.
 
-Esta documentação descreve a estrutura e o funcionamento do código Blade Laravel para a página de edição de um touro. 
+Título da Página:
+<h1>Editando o touro: {{$bull->name}}</h1>
+Exibe o nome do touro sendo editado como título da página.
+
+Formulário de Edição:
+<form action="/bulls/update/{{ $bull->id }}" method="POST" enctype="multipart/form-data">
+Envia os dados do formulário para a rota de atualização, utilizando o método HTTP PUT.
+
+Campos de Edição:
+
+Nome:
+<input type="text" class="form-control" id="name" name="name" placeholder="Nome do touro..." value="{{ $bull->name }}">
+
+RGD:
+<input type="text" class="form-control" id="rgd" name="rgd" placeholder="RGD do touro..." value="{{ $bull->rgd }}">
+
+Vacinado (Dropdown):
+<select name="vaccine" id="vaccine" class="form-control">
+    <option value="0">Não</option>
+    <option value="1" {{ $bull->vaccine == 1 ? "selected='selected'": ""}}>Sim</option>
+</select>
+
+Observações:
+<textarea name="observation" id="observation"  class="form-control" placeholder="Adicione alguma observação...">{{ $bull->observation }}</textarea>
+
+Upload de Imagem:
+<input type="file" id="image" name="image" class="from-control-file col-md-8">
+<img src="/img/bulls/{{ $bull->image }}" alt="{{ $bull->name }}" class="img-preview col-md-12">
+Permite o upload de uma nova imagem e exibe uma pré-visualização da imagem atual.
+
+Botão de envio:
+<input type="submit" class="btn btn-dark " value="Alterar touro">
+Submete o formulário para processamento.
+
+Considerações Finais
+Este código Blade oferece uma interface intuitiva e fácil de usar para a edição de informações de touros. Os campos de edição são claros, e a pré-visualização da imagem facilita a seleção de uma nova imagem. Manter este código pode envolver melhorias visuais, validações adicionais e ajustes conforme necessário para atender às mudanças nos requisitos do sistema.

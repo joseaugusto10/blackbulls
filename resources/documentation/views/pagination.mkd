@@ -1,0 +1,59 @@
+Introdução
+Este código Blade Laravel é responsável pela geração de links de paginação customizados para facilitar a navegação entre as páginas de um conjunto de resultados paginado. Esses elementos são essenciais para proporcionar uma experiência de usuário fluída ao explorar grandes conjuntos de dados, "as setas de próximo e anterior na tabela de touros.
+
+Estrutura do Código
+@if ($paginator->hasPages())
+    <ul class="pagination">
+        {{-- Previous Page Link --}}
+        @if ($paginator->onFirstPage())
+            <li class="disabled"><span>&laquo;&nbsp;&nbsp;Anterior</span></li>
+        @else
+            <li class="waves-effect"><a href="{{ $paginator->previousPageUrl() }}">&laquo;&nbsp;&nbsp;Anterior</a></li>
+        @endif
+
+        {{-- Next Page Link --}}
+        @if ($paginator->hasMorePages())
+            <li class="waves-effect"><a href="{{ $paginator->nextPageUrl() }}">&nbsp;&nbsp;Próximo&nbsp;&nbsp;&raquo;</a></li>
+        @else
+            <li class="disabled"><span>&nbsp;&nbsp;Próximo&nbsp;&nbsp;&raquo;</span></li>
+        @endif
+    </ul>
+@endif
+
+
+Verificação de Existência de Páginas:
+@if ($paginator->hasPages())
+Verifica se há mais de uma página disponível.
+
+Lista de Paginação:
+<ul class="pagination">
+Inicia uma lista não ordenada para os links de paginação.
+
+Link para Página Anterior:
+{{-- Previous Page Link --}}
+@if ($paginator->onFirstPage())
+    <li class="disabled"><span>&laquo;&nbsp;&nbsp;Anterior</span></li>
+@else
+    <li class="waves-effect"><a href="{{ $paginator->previousPageUrl() }}">&laquo;&nbsp;&nbsp;Anterior</a></li>
+@endif
+Verifica se a página atual é a primeira. Se for, desabilita o link; caso contrário, cria um link para a página anterior.
+
+Link para Próxima Página:
+{{-- Next Page Link --}}
+@if ($paginator->hasMorePages())
+    <li class="waves-effect"><a href="{{ $paginator->nextPageUrl() }}">&nbsp;&nbsp;Próximo&nbsp;&nbsp;&raquo;</a></li>
+@else
+    <li class="disabled"><span>&nbsp;&nbsp;Próximo&nbsp;&nbsp;&raquo;</span></li>
+@endif
+Verifica se há mais páginas disponíveis. Se houver, cria um link para a próxima página; caso contrário, desabilita o link.
+
+Fechamento da Lista de Paginação:
+</ul>
+Encerra a lista de paginação.
+
+Fechamento da Estrutura Condicional:
+@endif
+Encerra a estrutura condicional que verifica a existência de páginas a serem exibidas.
+
+Considerações Finais
+Este código Blade fornece uma solução clara e eficaz para a criação de links de paginação personalizados. Pode ser integrado em views Laravel para melhorar a navegação entre páginas em conjuntos de resultados paginados.

@@ -1,91 +1,71 @@
-# Documentação do Código Blade Laravel
+Introdução
+Este documento fornece uma visão detalhada do código Blade utilizado para construir a página de listagem de touros da aplicação "Black Bulls". Esta página é responsável por exibir uma tabela de touros cadastrados, fornecer opções de busca e interação.
 
-Este é um código Blade Laravel usado para renderizar uma página da web. Ele exibe uma lista de touros e permite que os usuários pesquisem e realizem ações como visualizar, editar e excluir touros.
+Estrutura do Arquivo
+O código está contido dentro de uma seção Blade @section('content'), que é estendida a partir do layout principal layouts.main. A página possui uma estrutura clara, composta por um formulário de busca, mensagens de feedback, e uma tabela de touros.
 
-## Estrutura do Documento
+Busca de Touro
+Elemento de Busca: O formulário permite que o usuário insira um termo de busca para encontrar touros específicos.
+Condição de Busca: Se uma busca for realizada ($search existe), a página exibirá uma mensagem indicando a pesquisa atual e um link para ver todos os touros.
+Feedback de Busca Vazia: Se a busca não retornar resultados, mensagens apropriadas são exibidas.
+Tabela de Touros
+Cabeçalho da Tabela: A tabela exibe informações essenciais sobre cada touro, incluindo ID, Nome, RGD, e se foi vacinado.
+Loop de Touros: Utiliza uma estrutura de repetição @foreach para iterar sobre a coleção de touros e preencher as células da tabela.
+Exibição Condicional de Vacinação: A coluna de "Vacinado" exibe "Sim" ou "Não" com base no valor do campo vaccine.
+Ações: Cada linha da tabela contém ícones de ação para visualizar detalhes (fa-eye), editar (fa-edit), e excluir (fa-times).
+Paginação
+Paginação: Utiliza o método de paginação Laravel para dividir os resultados em páginas.
+Personalização de Paginação: O arquivo de personalização custom.pagination é utilizado para renderizar os links de paginação de acordo com o design do site.
+Considerações Finais
+O código fornece uma interface de usuário clara e funcional para gerenciar touros cadastrados. As funcionalidades de busca e paginação melhoram a usabilidade, permitindo uma navegação eficiente pelos registros. A interação com os touros, através de ações como visualização, edição e exclusão, é facilitada pelos ícones e layout intuitivo.
 
-O documento Blade é dividido em várias seções usando as diretivas `@section` do Laravel, onde cada seção é renderizada em um layout específico.
+A manutenção contínua deste código pode incluir melhorias visuais, a adição de mais detalhes sobre os touros e a implementação de validações e verificações adicionais.
 
-### Seção 'title'
+-------------------------------------------------------------------------------------------------------------------------------
+Explicando códigos
 
-```php
-@section('title','home')
+Extensão de Layout:
+@extends('layouts.main') <!-- Estende o layout principal definido em 'layouts.main'. -->
 
+Título da Página:
+@section('title','home') <!-- Define o título da página como "home". -->
 
-Esta seção contém o conteúdo principal da página, que está vindo do Blade principal que é o Main.
-Seção 'content'
+Início da Seção de Conteúdo:
+@section('content') <!-- Início da seção de conteúdo da página. -->
 
-------------------------------------------------------------------------------------------------------------------------------
-##Conteúdo da Página
-O conteúdo da página é dividido em várias seções e elementos HTML.
+Contêiner Principal:
+<div class="container"> <!-- Contêiner principal que envolve todo o conteúdo da página. -->
 
-------------------------------------------------------------------------------------------------------------------------------
-##Barra de Pesquisa
-Nesta seção, é exibida uma barra de pesquisa que permite aos usuários procurar touros. A pesquisa é realizada através de um formulário GET.
-<div id="search-container" class="col-md-12 source-bulss">
-    <h5>Busque um touro</h5>
-    <form action="/" method="GET">
-        <input type="text" id="search" name="search" class="form-control" placeholder="Procurar...">
-    </form>
-    <br>
-</div>
+Barra de Busca:
+<div id="search-container" class="col-md-12 source-bulss"> <!-- Barra de busca. -->
 
-------------------------------------------------------------------------------------------------------------------------------
-##Exibição de Resultados de Pesquisa
-Esta parte exibe informações sobre a pesquisa, se uma pesquisa estiver em andamento.
-@if($search)
-<h6 class="alt-search">Pesquisando por: {{ $search }}, <a href="/">ver todos!</a></h6>
-<br>
-@endif
+Formulário de Busca:
+<form action="/" method="GET"> <!-- Formulário para a busca de touros. -->
 
-Essa seção lida com diferentes cenários, incluindo a exibição de uma mensagem de "Nenhum touro encontrado" quando a pesquisa não retorna resultados e uma mensagem para "Nenhum touro cadastrado" quando não há touros no banco de dados.
-@if(count($bulls) == 0 && $search)
-    <p class="alt-search">Não foi possível encontrar nenhum touro com {{ $search }}!</p>
-@elseif(count($bulls) == 0)
-    <p class="alt-search">Não existe touros cadastrados, <a href="bulls/create">deseja cadastrar?</a></p>
-@else
+Mensagem de Busca Atual:
+@if($search) <!-- Mensagem de busca atual. -->
 
-------------------------------------------------------------------------------------------------------------------------------
-##Tabela de Touros
+Mensagem de Nenhum Resultado Encontrado:
+@if(count($bulls) == 0 && $search) <!-- Mensagem de nenhum resultado encontrado após a busca -->
 
-Nesta seção, uma tabela é exibida com detalhes dos touros, incluindo ID, nome, RGD e status de vacinação. Ícones de ação permitem que os usuários visualizem, editem e removam touros.
+Tabela de Touros:
+<table class="table" id="bulls-table"> <!-- Tabela para exibir informações sobre os touros. -->
 
-<table class="table" id="bulls-table">
-    <!-- Cabeçalho da tabela -->
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Nome</th>
-            <th scope="col">RGD</th>
-            <th scope="col">Vacinado</th>
-            <th scope="col"></th>
-        </tr>
-    </thead>
-    <!-- Corpo da tabela -->
-    <tbody>
-        @foreach($bulls as $bull)
-            <tr>
-                <td scope="row" class="col-id">{{ $bull->id }}</td>
-                <td scope="row">{{ $bull->name }}</td>
-                <td scope="row">{{ $bull->rgd }}</td>
-                @if($bull->vaccine == 1)
-                    <td scope="row">Sim</td>
-                @else
-                    <td scope="row">Não</td>
-                @endif
-                <td class="actions">
-                    <!-- Ícones de ação -->
-                    <a href="/bulls/{{ $bull->id }}"><i class="fas fa-eye check-icon"></i></a>
-                    <a href="/bulls/edit/{{ $bull->id }}"><i class="far fa-edit edit-icon"></i></a>
-                    <form action="/bulls/{{ $bull->id }}" method="POST">
-                        @csrf
-                        @method('delete')
-                        <button type="submit" class="delete-btn" onclick="return confirm('Deseja remover?')">
-                            <i class="fas fa-times delete-icon"></i>
-                        </button>
-                    </form>
-                </td>
-            </tr>
-        @endforeach
-    </tbody>
-</table>
+Loop de Touros:
+@foreach($bulls as $bull) <!-- Loop que itera sobre a coleção de touros para preencher a tabela. -->
+
+Exibição Condicional da Vacinação:
+@if($bull ->vaccine == 1) <!-- Exibe "Sim" ou "Não" com base no valor do campo `vaccine`. -->
+
+Ícones de Ação:
+<td class="actions"> <!-- Contém ícones de ação para visualizar, editar e excluir um touro. -->
+
+Formulário de Exclusão:
+<form action="/bulls/{{ $bull->id }}" method="POST"> <!-- Formulário para excluir um touro, com confirmação. -->
+
+Links de Paginação Personalizados:
+<div class="page-table"> <!-- Links de paginação personalizados utilizando o arquivo de personalização `custom.pagination`. -->
+
+Fim da Seção de Conteúdo:
+@endsection <!-- Fim da seção de conteúdo da página. -->
+

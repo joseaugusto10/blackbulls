@@ -1,59 +1,42 @@
+Introdução
+Este documento oferece uma visão detalhada do código Blade utilizado para criar a página de visualização de um touro individual no website "Black Bulls". Essa página é responsável por exibir informações detalhadas sobre um touro específico, incluindo sua imagem, RGD, status de vacinação e observações.
 
-## Esta seção define o título da página, que geralmente corresponde ao nome do touro.
-# Documentação da Página de Visualização de Touro
+Estrutura do Arquivo
+O código está contido dentro de uma seção Blade @section('content'), que estende o layout principal layouts.main. A página possui uma estrutura organizada, apresentando o nome do touro, um link de retorno, e detalhes do touro, como imagem, RGD, status de vacinação e observações.
 
-Este código Blade Laravel representa a página de visualização de um touro específico. Ele exibe detalhes do touro, incluindo nome, imagem, RGD, status de vacinação e observações.
+Detalhes do Touro
 
-## Estrutura da Página
+Nome do Touro:
+<h3 id="main-title">{{ $bull->name }}</h3>
+Exibe o nome do touro como título principal da página.
 
-A página é dividida em várias seções e elementos HTML.
-
-### Título da Página
-
-```php
-@section('title',$bull->name)
-
-------------------------------------------------------------------------------------------------------------------------------
-## Conteúdo da Página
-Esta seção contém o conteúdo principal da página.
-@section('content')
-
-------------------------------------------------------------------------------------------------------------------------------
-## Estrutura do Conteúdo
-Esta seção representa a estrutura do conteúdo da página de visualização do touro. Aqui estão os principais elementos:
-
-Um título principal com o nome do touro.
-Um link de navegação que permite ao usuário voltar à página anterior.
-Uma imagem do touro.
-Detalhes do touro, incluindo RGD, status de vacinação e observações.
-<div class="container" id="view-bull-container">
-    <br><br>
-    <h3 id="main-title">{{ $bull->name }}</h3>
-    <div class="row">
-        <a class="nav-link active" id="back-link" href="/">
-            <i class="fas fa-arrow-left"></i>Voltar
-        </a>
-    </div>
-    <br>
-    <div class="row">
-        <div class="col-md-4">
-            <img src="/img/bulls/{{ $bull->image }}" class="img-fluid bull-img border border-dark rounded" alt="{{ $bull->image }}">
-        </div>
-        <div class="col-md-8">
-            <p><strong>RGD:</strong> {{ $bull->rgd }}</p>
-
-            @if($bull->vaccine == 1)
-                <p><strong>Vacinado:</strong> Sim</p>
-            @else
-                <p><strong>Vacinado:</strong> Não</p>
-            @endif
-            <p><strong>Observações:</strong> {{ $bull->observation }}</p>
-        </div>
-    </div>
+Link de Retorno:
+<div class="row">
+    <a class="nav-link active " id="back-link" href="/">
+        <i class="fas fa-arrow-left"></i>Voltar
+    </a>
 </div>
-------------------------------------------------------------------------------------------------------------------------------
-##Uso
-Este código Blade é usado para exibir os detalhes de um touro específico. Ele é chamado a partir de uma rota e recebe os dados do touro a ser exibido.
+Fornece um link para retornar à página anterior.
 
+Imagem do Touro:
+<div class="col-md-4">
+    <img src="/img/bulls/{{ $bull->image }}" class="img-fluid bull-img border border-dark rounded" alt="{{ $bull->image }}">
+</div>
+Exibe a imagem do touro, obtida da pasta "/img/bulls/", com uma classe CSS para garantir uma exibição responsiva.
 
-Esta documentação descreve a estrutura e o funcionamento do código Blade Laravel para a página de visualização de um touro específico.
+Detalhes do Touro:
+<div class="col-md-8">
+    <p><strong>RGD:</strong> {{ $bull->rgd }}</p>
+    
+    @if($bull ->vaccine == 1)
+        <p><strong>Vacinado:</strong> Sim</p>
+    @else
+        <p><strong>Vacinado:</strong> Não</p>
+    @endif
+
+    <p><strong>Observações:</strong> {{ $bull->observation }}</p>
+</div>
+Apresenta informações específicas sobre o touro, como RGD, status de vacinação (condicional), e observações.
+
+Considerações Finais
+Este código Blade proporciona uma página de visualização limpa e organizada para informações detalhadas sobre um touro específico. O layout intuitivo e a estrutura clara contribuem para uma experiência do usuário eficiente. A manutenção contínua deste código pode incluir melhorias visuais, a adição de mais detalhes sobre os touros e a implementação de validações adicionais.

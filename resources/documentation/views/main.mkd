@@ -1,46 +1,33 @@
-# Documentação do Layout HTML Laravel
+Introdução
+Esta documentação fornece uma visão detalhada do código HTML e Blade utilizado para construir o website "Black Bulls". A aplicação parece ser dedicado a touros e apresenta um layout responsivo com uma barra de navegação, um cabeçalho distintivo, e um rodapé informativo.
 
-Este é um arquivo de layout HTML utilizado em um aplicativo Laravel. Ele define a estrutura básica da página da web, incluindo o cabeçalho, o conteúdo principal e o rodapé.
+Estrutura do Arquivo
+O código está organizado em  blade.php, que mescla HTML com a linguagem de template Blade, comum no framework Laravel.
 
-## Estrutura do Documento
-
-O arquivo HTML é dividido em várias seções, cada uma com um propósito específico.
-
-### Elemento `<head>`
-
-O elemento `<head>` é responsável por conter metadados e links para recursos externos.
-
-- `meta charset="utf-8"`: Define a codificação de caracteres para UTF-8.
-- `meta name="viewport"`: Define a configuração da viewport para dispositivos móveis.
-- `<title>`: Define o título da página que será exibido na barra de título do navegador.
-- `<link rel="icon">`: Define o ícone da página exibido na guia do navegador.
-- Links para folhas de estilo CSS, incluindo estilos personalizados, Bootstrap e Font Awesome.
-
-### Elemento `<body>`
-
-O elemento `<body>` contém todo o conteúdo da página.
-
-- `<header>`: A seção de cabeçalho da página.
-  - `<nav class="navbar">`: Uma barra de navegação Bootstrap.
-    - Um botão de hamburguer (`<div class="navbar-toggler">`) para dispositivos móveis.
-    - `<div class="collapse navbar-collapse" id="navbarNav">`: O menu de navegação.
-    - Uma imagem de logo.
-    - Links de navegação para "Touros" e "Adicionar touro".
-
-- Um título principal `<h1>` com um ícone do Font Awesome representando um touro.
-- Um `<main>` que contém o conteúdo principal da página.
-
-- Dentro do `<main>`, há um espaço para exibir mensagens de sessão (`@if(session('msg'))`) e, em seguida, o conteúdo real da página é exibido (`@yield('content')`), que pode ser substituído pelas páginas que estendem este layout.
-
-### Elemento `<footer>`
-
-O elemento `<footer>` exibe o rodapé da página com informações de direitos autorais.
-
-## Estilos e Recursos Externos
-
-O layout utiliza estilos personalizados, Bootstrap e Font Awesome para criar uma aparência moderna e responsiva.
-
-## Uso
-
-Este layout serve como o modelo padrão para todas as páginas em um aplicativo Laravel. Pode ser estendido por outras páginas que desejam adicionar conteúdo específico a ele.
-
+Tags Principais
+<!DOCTYPE html>: Define a versão do HTML utilizada e o idioma do documento.
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">: Define a tag HTML principal com o idioma dinâmico baseado na configuração do aplicativo Laravel.
+<head>: Contém metadados, links para estilos e scripts, e o título da página.
+<meta charset="utf-8">: Especifica a codificação de caracteres UTF-8.
+<meta name="viewport" content="width=device-width, initial-scale=1">: Define a escala inicial da viewport para dispositivos móveis.
+<title>@yield('title')</title>: Define o título da página, utilizando a diretiva @yield para permitir a substituição em seções específicas.
+<link rel="icon" href="/img/header/logo.png">: Especifica o ícone da página exibido na guia do navegador.
+@yield('css'): Placeholder para incorporar folhas de estilo específicas da página.
+Estilos Externos
+CSS do Software: Um arquivo localizado em /css/styles.css contendo estilos específicos do software.
+Bootstrap: Framework CSS externo para facilitar o design responsivo.
+Font Awesome: Biblioteca de ícones que adiciona ícones visuais à página.
+Corpo da Página
+<body>: Inicia o corpo da página.
+<header>: Contém a barra de navegação e o logotipo do "Black Bulls".
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">: Define a barra de navegação usando Bootstrap.
+<div class="collapse navbar-collapse" id="navbarNav">: Agrupa os itens da barra de navegação.
+<div class="navbar-nav custom-navbar">: Itens de navegação personalizados.
+<main>: Contém o conteúdo principal da página, utilizando o Blade @yield('content') para permitir a substituição de conteúdo dinâmico.
+<footer class="footer">: Rodapé contendo o ano e o nome da organização.
+Funcionalidades
+Navegação: A barra de navegação permite navegar entre as páginas "Touros", "Adicionar Touro" e "Dashboard".
+Mensagens Flash: Exibe mensagens de sessão, como confirmações de ação, na parte superior da página quando necessário.
+Responsividade: Utiliza Bootstrap para garantir uma experiência de usuário consistente em dispositivos de diferentes tamanhos.
+Conclusão
+O código fornece uma estrutura clara e bem organizada para a aplicação "Black Bulls". A utilização de tecnologias como Bootstrap e Font Awesome contribui para um design moderno e responsivo. Para expandir este website, considere adicionar mais detalhes sobre touros, interatividade na Dashboard e aprimoramentos visuais conforme necessário.
