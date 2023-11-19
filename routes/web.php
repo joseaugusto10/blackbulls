@@ -26,3 +26,6 @@ Route::delete('/bulls/{id}',[bullController::class, 'destroy']);//Rota para pega
 Route::get('/bulls/edit/{id}',[bullController::class,'edit']);//Rota para pegar o id do front e editar do banco
 Route::put('/bulls/update/{id}', 'App\Http\Controllers\bullController@update');//Rota para atualizar os dados no banco
 
+Route::fallback(function(){
+    echo 'A rota acessada não existe. <a href="/">Clique aqui</a> para ir para a página inicial';
+});

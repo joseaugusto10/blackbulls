@@ -43,5 +43,12 @@ Route::put('/bulls/update/{id}', 'App\Http\Controllers\bullController@update');
 Descrição: Rota para processar a atualização de dados do formulário e armazenar no banco.
 Método Controlador: bullController@update.
 
+Rota de Fallback:
+Route::fallback(function(){
+    echo 'A rota acessada não existe. <a href="/">Clique aqui</a> para ir para a página inicial.';
+});
+Descrição: Quando uma solicitação é feita para uma rota que não foi definida, a função de fallback é executada.
+A mensagem "A rota acessada não existe. Clique aqui para ir para a página inicial." é exibida na resposta HTTP.
+
 Considerações Finais
 Estas rotas definidas no Laravel mapeiam as diferentes funcionalidades relacionadas ao controle de touros no sistema. A manutenção contínua pode envolver a adição de mais rotas, ajustes nas rotas existentes, e a implementação de autenticação e autorização conforme necessário para aprimorar a segurança do sistema.
